@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .stars {
+      display: flex;
+    }
+
+    .stars-item {
+      width: 24px;
+      height: 24px;
+      background-color: #ddd;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      background-size: cover
+    }
+
+    .inactive {
+      background-image: url("./b.jpg");
+    }
+
+    .active {
+      background-image: url("./a.jpg");
+    }
+
+    .auto-img {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="stars">
+      <div class="stars-item" :class="[activeCount >= item ? 'active' : 'inactive']" v-for="item in count"
+        @click="activeStar(item)"></div>
+    </div>
+
+  </div>
+
+
+  <script src="./js/vue.js"></script>
+  <script>
+    for (let i = 0; i < 6; i++) {
+      console.log(i);
+
+    }
+    new Vue({
+      el: '#app',
+
+      data: {
+        count: 5,
+
+        //激活的星星的数量
+        activeCount: 0
+      },
+
+      methods: {
+        activeStar(item) {
+          console.log('item ==> ', item);
+
+          if (this.activeCount === item) {
+            this.activeCount = 0;
+            return;
+          }
+
+          this.activeCount = item;
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
